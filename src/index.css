@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Brand colors */
+  --color-brand-blue-50: #e8eef8;
+  --color-brand-blue-100: #c5d3ee;
+  --color-brand-blue-200: #8aa7dd;
+  --color-brand-blue-300: #4f7bcc;
+  --color-brand-blue-400: #3565c1;
+  --color-brand-blue-500: #2b55b7;
+  --color-brand-blue-600: #244a9e;
+  --color-brand-blue-700: #1d3d85;
+  --color-brand-blue-800: #162e64;
+  --color-brand-blue-900: #0f1f43;
+
+  --color-brand-yellow-50: #fcfbe8;
+  --color-brand-yellow-100: #f7f4c0;
+  --color-brand-yellow-200: #ede67a;
+  --color-brand-yellow-300: #e5db4e;
+  --color-brand-yellow-400: #ded132;
+  --color-brand-yellow-500: #c4b820;
+  --color-brand-yellow-600: #9e9419;
+  --color-brand-yellow-700: #787013;
+  --color-brand-yellow-800: #524c0d;
+  --color-brand-yellow-900: #2c2907;
+
+  --color-brand-frost: #f0faf5;
+
+  /* Graphite neutrals */
+  --color-graphite-50: #f0faf5;
+  --color-graphite-100: #e5e7eb;
+  --color-graphite-200: #d1d5db;
+  --color-graphite-300: #9ca3af;
+  --color-graphite-400: #6b7280;
+  --color-graphite-500: #4a5160;
+  --color-graphite-600: #363c4a;
+  --color-graphite-700: #2a2f3b;
+  --color-graphite-750: #212631;
+  --color-graphite-800: #1a1e28;
+  --color-graphite-850: #14171f;
+  --color-graphite-900: #0f1117;
+  --color-graphite-950: #0a0c10;
+
+  /* shadcn/ui semantic colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", "Fira Code", monospace;
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  :root {
+    --background: #f0faf5;
+    --foreground: #1a1e28;
+    --card: #ffffff;
+    --card-foreground: #1a1e28;
+    --popover: #ffffff;
+    --popover-foreground: #1a1e28;
+    --primary: #2b55b7;
+    --primary-foreground: #f0faf5;
+    --secondary: #e5e7eb;
+    --secondary-foreground: #1a1e28;
+    --muted: #e5e7eb;
+    --muted-foreground: #6b7280;
+    --accent: #ded132;
+    --accent-foreground: #0a0c10;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #d1d5db;
+    --input: #d1d5db;
+    --ring: #2b55b7;
+    --radius: 0.5rem;
+
+    --success: #16a34a;
+    --warning: #c4b820;
+    --error: #dc2626;
+    --info: #3565c1;
+  }
+
+  .dark {
+    --background: #0f1117;
+    --foreground: #d1d5db;
+    --card: #1a1e28;
+    --card-foreground: #d1d5db;
+    --popover: #1a1e28;
+    --popover-foreground: #d1d5db;
+    --primary: #2b55b7;
+    --primary-foreground: #f0faf5;
+    --secondary: #212631;
+    --secondary-foreground: #d1d5db;
+    --muted: #212631;
+    --muted-foreground: #6b7280;
+    --accent: #ded132;
+    --accent-foreground: #0a0c10;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #363c4a;
+    --input: #363c4a;
+    --ring: #2b55b7;
+
+    --success: #22c55e;
+    --warning: #ded132;
+    --error: #ef4444;
+    --info: #2b55b7;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    margin: 0;
+    min-height: 100vh;
+  }
+}
