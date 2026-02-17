@@ -42,12 +42,28 @@ src/
 │   │   ├── card.tsx
 │   │   ├── dialog.tsx
 │   │   ├── input.tsx
+│   │   ├── scroll-reveal.tsx
+│   │   ├── section-tag.tsx
 │   │   ├── separator.tsx
 │   │   ├── tabs.tsx
 │   │   ├── tooltip.tsx
 │   └── layout/
+│       ├── footer.tsx
 │       ├── header.tsx
+│       ├── nav.tsx
+│       ├── page-layout.tsx
 │       └── shell.tsx
+│   ├── sections/
+│   │   ├── competitive-void.tsx
+│   │   ├── contact-form.tsx
+│   │   ├── cta-section.tsx
+│   │   ├── demo-placeholder.tsx
+│   │   ├── differentiators.tsx
+│   │   ├── finops-analogy.tsx
+│   │   ├── hero.tsx
+│   │   ├── pain-curve.tsx
+│   │   ├── problem-statement.tsx
+│   │   └── process-steps.tsx
 ├── hooks/
 docs/
 ├── contentplan.md

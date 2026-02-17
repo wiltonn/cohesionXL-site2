@@ -1,10 +1,20 @@
-import { Shell } from "@/components/layout/shell"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { PageLayout } from "@/components/layout/page-layout"
+import { Home } from "@/pages/home"
+import { HowItWorks } from "@/pages/how-it-works"
+import { Contact } from "@/pages/contact"
 
 function App() {
   return (
-    <Shell>
-      {/* Content sections will be added from the content deck */}
-    </Shell>
+    <BrowserRouter>
+      <PageLayout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </PageLayout>
+    </BrowserRouter>
   )
 }
 
