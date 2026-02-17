@@ -1,42 +1,20 @@
 import { Play } from "lucide-react"
-import { motion } from "framer-motion"
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
 
 export function DemoPlaceholder() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-        <ScrollReveal>
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-white/[0.06] bg-surface">
-            {/* Pulsing border glow */}
-            <motion.div
-              className="pointer-events-none absolute inset-0 rounded-xl"
-              style={{
-                boxShadow: "inset 0 0 0 1px rgba(0,212,255,0.15), 0 0 30px rgba(0,212,255,0.05)",
-              }}
-              animate={{
-                boxShadow: [
-                  "inset 0 0 0 1px rgba(0,212,255,0.1), 0 0 20px rgba(0,212,255,0.03)",
-                  "inset 0 0 0 1px rgba(0,212,255,0.25), 0 0 40px rgba(0,212,255,0.08)",
-                  "inset 0 0 0 1px rgba(0,212,255,0.1), 0 0 20px rgba(0,212,255,0.03)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-
+        <div>
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-graphite-600 bg-graphite-800">
             {/* Center content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <button className="group flex h-16 w-16 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 transition-all hover:border-cyan-400/50 hover:bg-cyan-400/20">
+              <button className="group flex h-16 w-16 items-center justify-center rounded-full border border-brand-blue-500/30 bg-brand-blue-500/10 transition-colors duration-200 hover:border-brand-blue-500/50 hover:bg-brand-blue-500/20">
                 <Play
                   size={24}
-                  className="ml-1 text-cyan-400 transition-transform group-hover:scale-110"
+                  className="ml-1 text-brand-blue-400 transition-transform duration-200 group-hover:scale-110"
                 />
               </button>
-              <span className="mt-4 text-[15px] font-medium text-text-primary">
+              <span className="mt-4 text-[15px] font-medium text-graphite-100">
                 Product Demo
               </span>
             </div>
@@ -53,14 +31,14 @@ export function DemoPlaceholder() {
               }}
             />
           </div>
-        </ScrollReveal>
+        </div>
 
-        <ScrollReveal delay={0.15}>
-          <p className="mx-auto mt-5 max-w-[560px] text-center text-[14px] leading-[1.6] text-text-muted">
+        <div>
+          <p className="mx-auto mt-5 max-w-[560px] text-center text-[14px] leading-[1.6] text-graphite-400">
             See CohesionXL model a real enterprise constraint graph and simulate
             portfolio trade-offs across mixed human/AI capacity.
           </p>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )

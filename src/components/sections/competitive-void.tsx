@@ -1,4 +1,3 @@
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { SectionTag } from "@/components/ui/section-tag"
 
 const categories = [
@@ -29,59 +28,60 @@ export function CompetitiveVoid() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-        <ScrollReveal>
+        <div>
           <SectionTag>The Landscape</SectionTag>
-          <h2 className="max-w-[700px] font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.2] tracking-[-0.02em] text-text-primary">
+          <h2 className="max-w-[700px] text-2xl font-semibold leading-[1.3] tracking-[-0.02em] text-graphite-100">
             Three categories exist nearby. None of them solve this.
           </h2>
-        </ScrollReveal>
+        </div>
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {categories.map((cat, i) => (
-            <ScrollReveal key={cat.name} delay={0.1 + i * 0.1}>
-              <div className="group h-full rounded-xl border border-white/[0.06] bg-surface p-6 transition-colors hover:border-white/[0.1] hover:bg-surface-elevated">
-                <h3 className="font-display text-lg leading-snug tracking-tight text-text-primary">
-                  {cat.name}
-                </h3>
-                <p className="mt-1 text-[12px] font-medium text-text-muted">
-                  {cat.players}
+          {categories.map((cat) => (
+            <div
+              key={cat.name}
+              className="group h-full rounded-lg border border-graphite-600 bg-graphite-800 p-6 transition-colors duration-200 hover:border-graphite-500 hover:bg-graphite-750"
+            >
+              <h3 className="text-lg font-semibold leading-snug tracking-tight text-graphite-100">
+                {cat.name}
+              </h3>
+              <p className="mt-1 text-[12px] font-medium text-graphite-400">
+                {cat.players}
+              </p>
+
+              <div className="mt-5">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-graphite-400">
+                  What they do
+                </span>
+                <p className="mt-1.5 text-[14px] leading-[1.6] text-graphite-300">
+                  {cat.whatTheyDo}
                 </p>
-
-                <div className="mt-5">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-text-muted">
-                    What they do
-                  </span>
-                  <p className="mt-1.5 text-[14px] leading-[1.6] text-text-secondary">
-                    {cat.whatTheyDo}
-                  </p>
-                </div>
-
-                <div className="mt-5">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-coral-400">
-                    The gap
-                  </span>
-                  <p className="mt-1.5 text-[14px] leading-[1.6] text-text-secondary">
-                    {cat.gap}
-                  </p>
-                </div>
               </div>
-            </ScrollReveal>
+
+              <div className="mt-5">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-red-400">
+                  The gap
+                </span>
+                <p className="mt-1.5 text-[14px] leading-[1.6] text-graphite-300">
+                  {cat.gap}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
 
-        <ScrollReveal delay={0.4} className="mt-14">
-          <div className="rounded-xl border border-cyan-400/10 bg-cyan-400/[0.03] p-6 lg:p-8">
-            <p className="mx-auto max-w-[800px] text-center text-[16px] leading-[1.7] text-text-secondary">
+        <div className="mt-14">
+          <div className="rounded-lg border border-brand-blue-500/20 bg-brand-blue-500/[0.05] p-6 lg:p-8">
+            <p className="mx-auto max-w-[800px] text-center text-base leading-[1.7] text-graphite-300">
               CohesionXL sits at the intersection: it{" "}
-              <span className="text-cyan-400">discovers</span> organizational
+              <span className="text-brand-blue-400">discovers</span> organizational
               topology, uses that topology to{" "}
-              <span className="text-cyan-400">model constraints</span>, and
+              <span className="text-brand-blue-400">model constraints</span>, and
               treats human + AI capacity as a{" "}
-              <span className="text-cyan-400">unified throughput model</span>.
+              <span className="text-brand-blue-400">unified throughput model</span>.
               No existing product does this.
             </p>
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )

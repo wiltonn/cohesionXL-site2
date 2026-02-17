@@ -16,7 +16,7 @@ export function PageLayout({ children }: PageLayoutProps) {
   }, [pathname])
 
   return (
-    <div className="flex min-h-screen flex-col bg-void">
+    <div className="flex min-h-screen flex-col bg-graphite-900">
       <Nav />
       <main className="flex-1 pt-16">{children}</main>
       <Footer />

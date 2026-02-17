@@ -1,25 +1,24 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { SectionTag } from "@/components/ui/section-tag"
 import { X } from "lucide-react"
 
 const phases = [
   {
     id: 1,
-    timeline: "Now → Mid 2026",
+    timeline: "Now - Mid 2026",
     title: "Tool Sprawl Creates Planning Chaos",
     body: "49% of developers use 5+ AI tools. Teams lose 7 hours per member per week to AI-related inefficiency. Pain is diffuse — nobody can explain why at the portfolio level because the planning tools can't see AI capacity or its friction costs.",
-    color: "amber" as const,
+    color: "yellow" as const,
     cx: 25,
     cy: 28,
   },
   {
     id: 2,
-    timeline: "Mid 2026 → 2027",
+    timeline: "Mid 2026 - 2027",
     title: "Agent Capacity Becomes a Budget Line",
     body: "Organizations start paying for AI agents as production delivery capacity, not productivity tools. You can't put an agentic coding team on a Gantt chart. You can't allocate \"30% of Claude Code's throughput\" in Planview. The planning model literally has no input field for this.",
-    color: "coral" as const,
+    color: "error" as const,
     cx: 52,
     cy: 52,
   },
@@ -28,33 +27,33 @@ const phases = [
     timeline: "2027+",
     title: "The Failure Cascade Forces the Buy",
     body: "40%+ of agentic AI projects canceled. Organizations that can't govern mixed human/AI capacity will either abandon AI entirely — or buy the governance layer they should have had from the start.",
-    color: "deepred" as const,
+    color: "deeperror" as const,
     cx: 78,
     cy: 82,
   },
 ]
 
 const colorStyles = {
-  amber: {
-    fill: "#FFAA00",
-    bg: "bg-amber-400/10",
-    border: "border-amber-400/20",
-    text: "text-amber-400",
-    badge: "bg-amber-400/15 text-amber-400",
+  yellow: {
+    fill: "#ded132",
+    bg: "bg-brand-yellow-400/10",
+    border: "border-brand-yellow-400/20",
+    text: "text-brand-yellow-400",
+    badge: "bg-brand-yellow-400/15 text-brand-yellow-400",
   },
-  coral: {
-    fill: "#FF3366",
-    bg: "bg-coral-400/10",
-    border: "border-coral-400/20",
-    text: "text-coral-400",
-    badge: "bg-coral-400/15 text-coral-400",
+  error: {
+    fill: "#ef4444",
+    bg: "bg-red-500/10",
+    border: "border-red-500/20",
+    text: "text-red-500",
+    badge: "bg-red-500/15 text-red-500",
   },
-  deepred: {
-    fill: "#CC1133",
-    bg: "bg-coral-400/10",
-    border: "border-coral-400/30",
-    text: "text-coral-400",
-    badge: "bg-coral-400/15 text-coral-400",
+  deeperror: {
+    fill: "#dc2626",
+    bg: "bg-red-600/10",
+    border: "border-red-600/30",
+    text: "text-red-600",
+    badge: "bg-red-600/15 text-red-600",
   },
 }
 
@@ -70,18 +69,18 @@ export function PainCurve() {
   return (
     <section className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-        <ScrollReveal>
+        <div>
           <SectionTag>Pain Acceleration Curve</SectionTag>
-          <h2 className="max-w-[700px] font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.2] tracking-[-0.02em] text-text-primary">
+          <h2 className="max-w-[700px] text-2xl font-semibold leading-[1.3] tracking-[-0.02em] text-graphite-100">
             The governance gap is widening faster than your planning tools can
             adapt.
           </h2>
-        </ScrollReveal>
+        </div>
 
-        <ScrollReveal delay={0.2} className="mt-16">
+        <div className="mt-16">
           <div
             ref={containerRef}
-            className="relative rounded-xl border border-white/[0.06] bg-surface p-6 lg:p-10"
+            className="relative rounded-lg border border-graphite-600 bg-graphite-800 p-6 lg:p-10"
           >
             {/* SVG Chart */}
             <div className="relative w-full">
@@ -98,25 +97,25 @@ export function PainCurve() {
                     y1={y}
                     x2={760}
                     y2={y}
-                    stroke="rgba(255,255,255,0.04)"
+                    stroke="#2a2f3b"
                     strokeDasharray="4 4"
                   />
                 ))}
 
                 {/* Axis labels */}
-                <text x={400} y={272} textAnchor="middle" fill="#556677" fontSize={11} fontFamily="General Sans, sans-serif">
+                <text x={400} y={272} textAnchor="middle" fill="#6b7280" fontSize={11} fontFamily="Inter, system-ui, sans-serif">
                   Time
                 </text>
-                <text x={20} y={140} textAnchor="middle" fill="#556677" fontSize={11} fontFamily="General Sans, sans-serif" transform="rotate(-90, 20, 140)">
+                <text x={20} y={140} textAnchor="middle" fill="#6b7280" fontSize={11} fontFamily="Inter, system-ui, sans-serif" transform="rotate(-90, 20, 140)">
                   Planning Pain
                 </text>
 
                 {/* Gradient definition for the curve */}
                 <defs>
                   <linearGradient id="curveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#FFAA00" />
-                    <stop offset="50%" stopColor="#FF3366" />
-                    <stop offset="100%" stopColor="#CC1133" />
+                    <stop offset="0%" stopColor="#ded132" />
+                    <stop offset="50%" stopColor="#ef4444" />
+                    <stop offset="100%" stopColor="#dc2626" />
                   </linearGradient>
                 </defs>
 
@@ -124,7 +123,7 @@ export function PainCurve() {
                 <motion.path
                   d={curvePath}
                   stroke="url(#curveGradient)"
-                  strokeWidth={2.5}
+                  strokeWidth={2}
                   strokeLinecap="round"
                   fill="none"
                   initial={{ pathLength: 0 }}
@@ -197,7 +196,7 @@ export function PainCurve() {
                         fill={colorStyles[phase.color].fill}
                         fontSize={11}
                         fontWeight={500}
-                        fontFamily="General Sans, sans-serif"
+                        fontFamily="Inter, system-ui, sans-serif"
                         className="cursor-pointer"
                         onClick={() =>
                           setExpandedPhase(
@@ -213,7 +212,7 @@ export function PainCurve() {
               </svg>
             </div>
 
-            {/* Phase detail cards (mobile: always visible as timeline) */}
+            {/* Phase detail cards */}
             <div className="mt-8 grid gap-4 lg:grid-cols-3">
               {phases.map((phase) => {
                 const colors = colorStyles[phase.color]
@@ -223,10 +222,10 @@ export function PainCurve() {
                   <motion.div
                     key={phase.id}
                     layout
-                    className={`cursor-pointer rounded-lg border p-5 transition-colors ${
+                    className={`cursor-pointer rounded-lg border p-5 transition-colors duration-200 ${
                       isExpanded
                         ? `${colors.bg} ${colors.border}`
-                        : "border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04]"
+                        : "border-graphite-600 bg-graphite-750 hover:bg-graphite-700"
                     }`}
                     onClick={() =>
                       setExpandedPhase(isExpanded ? null : phase.id)
@@ -244,7 +243,7 @@ export function PainCurve() {
                             e.stopPropagation()
                             setExpandedPhase(null)
                           }}
-                          className="text-text-muted hover:text-text-secondary"
+                          className="text-graphite-400 hover:text-graphite-300"
                         >
                           <X size={14} />
                         </button>
@@ -252,7 +251,7 @@ export function PainCurve() {
                     </div>
                     <h4
                       className={`mt-3 text-[15px] font-semibold ${
-                        isExpanded ? colors.text : "text-text-primary"
+                        isExpanded ? colors.text : "text-graphite-100"
                       }`}
                     >
                       {phase.title}
@@ -263,10 +262,10 @@ export function PainCurve() {
                         height: isExpanded ? "auto" : 0,
                         opacity: isExpanded ? 1 : 0,
                       }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.25 }}
                       className="overflow-hidden"
                     >
-                      <p className="mt-3 text-[14px] leading-[1.7] text-text-secondary">
+                      <p className="mt-3 text-[14px] leading-[1.7] text-graphite-300">
                         {phase.body}
                       </p>
                     </motion.div>
@@ -275,15 +274,15 @@ export function PainCurve() {
               })}
             </div>
           </div>
-        </ScrollReveal>
+        </div>
 
-        <ScrollReveal delay={0.3} className="mt-12">
-          <p className="mx-auto max-w-[720px] text-center font-display text-[clamp(1.1rem,2vw,1.35rem)] leading-[1.5] tracking-[-0.01em] text-text-secondary italic">
+        <div className="mt-12">
+          <p className="mx-auto max-w-[720px] text-center text-xl font-semibold leading-[1.4] tracking-[-0.01em] text-graphite-300 italic">
             The question isn't whether you'll need AI capacity governance. It's
             whether you'll have it before the failure cascade hits your
             portfolio.
           </p>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   )

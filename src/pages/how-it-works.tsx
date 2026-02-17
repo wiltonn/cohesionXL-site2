@@ -15,7 +15,7 @@ export function HowItWorks() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <h1 className="max-w-[700px] font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.15] tracking-[-0.02em] text-text-primary">
+            <h1 className="max-w-[700px] text-[2.25rem] font-bold leading-[1.2] tracking-[-0.025em] text-graphite-100">
               From fragmented toolchains to governable delivery.
             </h1>
           </motion.div>
@@ -29,7 +29,7 @@ export function HowItWorks() {
               ease: [0.25, 0.4, 0.25, 1],
             }}
           >
-            <p className="mt-6 max-w-[600px] text-[17px] leading-[1.7] text-text-secondary">
+            <p className="mt-6 max-w-[600px] text-base leading-[1.7] text-graphite-300">
               CohesionXL is infrastructure, not another dashboard. It sits
               underneath your existing planning tools and gives them the one thing
               they've never had: an accurate model of what your organization can

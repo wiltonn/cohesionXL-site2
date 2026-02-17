@@ -1,4 +1,3 @@
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { SectionTag } from "@/components/ui/section-tag"
 
 const differentiators = [
@@ -38,25 +37,25 @@ export function Differentiators() {
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-        <ScrollReveal>
+        <div>
           <SectionTag>Key Differentiators</SectionTag>
-        </ScrollReveal>
+        </div>
 
         <div className="mt-10 grid gap-x-16 gap-y-10 md:grid-cols-2">
-          {differentiators.map((d, i) => (
-            <ScrollReveal key={d.title} delay={i * 0.08}>
+          {differentiators.map((d) => (
+            <div key={d.title}>
               <div className="flex gap-4">
-                <div className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cyan-400" />
+                <div className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-blue-400" />
                 <div>
-                  <h4 className="text-[16px] font-semibold text-text-primary">
+                  <h4 className="text-base font-semibold text-graphite-100">
                     {d.title}
                   </h4>
-                  <p className="mt-1.5 text-[15px] leading-[1.6] text-text-secondary">
+                  <p className="mt-1.5 text-[15px] leading-[1.6] text-graphite-300">
                     {d.description}
                   </p>
                 </div>
               </div>
-            </ScrollReveal>
+            </div>
           ))}
         </div>
       </div>

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion"
 import { ContactForm } from "@/components/sections/contact-form"
-import { ScrollReveal } from "@/components/ui/scroll-reveal"
 import { Mail, FileText } from "lucide-react"
 
 export function Contact() {
@@ -14,7 +13,7 @@ export function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            <h1 className="max-w-[700px] font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.15] tracking-[-0.02em] text-text-primary">
+            <h1 className="max-w-[700px] text-[2.25rem] font-bold leading-[1.2] tracking-[-0.025em] text-graphite-100">
               Let's talk about your capacity governance gap.
             </h1>
           </motion.div>
@@ -28,7 +27,7 @@ export function Contact() {
               ease: [0.25, 0.4, 0.25, 1],
             }}
           >
-            <p className="mt-6 max-w-[640px] text-[17px] leading-[1.7] text-text-secondary">
+            <p className="mt-6 max-w-[640px] text-base leading-[1.7] text-graphite-300">
               Whether you're a CTO navigating mixed human/AI delivery, a VP of
               Engineering watching planning accuracy degrade, or an investor
               evaluating the AI governance infrastructure opportunity — we'd like
@@ -43,38 +42,38 @@ export function Contact() {
       {/* Alternative Contact */}
       <section className="pb-24 lg:pb-32">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-8">
-          <ScrollReveal>
-            <div className="mx-auto flex max-w-[560px] flex-col items-center gap-4 rounded-xl border border-white/[0.06] bg-surface p-8 text-center sm:flex-row sm:text-left">
+          <div>
+            <div className="mx-auto flex max-w-[560px] flex-col items-center gap-4 rounded-lg border border-graphite-600 bg-graphite-800 p-8 text-center sm:flex-row sm:text-left">
               <div className="flex flex-1 items-center gap-3">
-                <Mail size={16} className="flex-shrink-0 text-cyan-400" />
+                <Mail size={16} className="flex-shrink-0 text-brand-blue-400" />
                 <div>
-                  <span className="text-[13px] text-text-muted">
+                  <span className="text-[13px] text-graphite-400">
                     Prefer email?
                   </span>
                   <a
                     href="mailto:hello@cohesionxl.com"
-                    className="ml-2 text-[14px] font-medium text-cyan-400 no-underline transition-colors hover:text-cyan-500"
+                    className="ml-2 text-[14px] font-medium text-brand-blue-400 no-underline transition-colors duration-200 hover:text-brand-blue-300"
                   >
                     hello@cohesionxl.com
                   </a>
                 </div>
               </div>
 
-              <div className="hidden h-8 w-px bg-white/[0.06] sm:block" />
+              <div className="hidden h-8 w-px bg-graphite-600 sm:block" />
 
               <div className="flex flex-1 items-center gap-3">
-                <FileText size={16} className="flex-shrink-0 text-cyan-400" />
+                <FileText size={16} className="flex-shrink-0 text-brand-blue-400" />
                 <div>
-                  <span className="text-[13px] text-text-muted">
+                  <span className="text-[13px] text-graphite-400">
                     Want to see the research?
                   </span>
-                  <span className="ml-2 text-[14px] font-medium text-text-muted">
+                  <span className="ml-2 text-[14px] font-medium text-graphite-400">
                     Coming soon
                   </span>
                 </div>
               </div>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
     </>
