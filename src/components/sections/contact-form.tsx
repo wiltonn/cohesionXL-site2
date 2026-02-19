@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Send } from "lucide-react"
+import { Send, Loader2, CheckCircle2 } from "lucide-react"
+import { submitLead } from "@/lib/submit-lead"
 
 const roles = [
   "CTO",
@@ -25,10 +26,35 @@ export function ContactForm() {
     interest: "",
     message: "",
   })
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [errorMsg, setErrorMsg] = useState("")
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setStatus("submitting")
+    setErrorMsg("")
+
+    // Split name into first/last
+    const nameParts = formData.name.trim().split(/\s+/)
+    const firstname = nameParts[0] || ""
+    const lastname = nameParts.slice(1).join(" ") || ""
+
+    try {
+      await submitLead({
+        email: formData.email,
+        firstname,
+        lastname,
+        company: formData.company,
+        jobtitle: formData.role,
+        message: formData.message,
+        plan_interest: formData.interest,
+      })
+      setStatus("success")
+      setFormData({ name: "", email: "", company: "", role: "", interest: "", message: "" })
+    } catch (err) {
+      setStatus("error")
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong")
+    }
   }
 
   const inputClasses =
@@ -164,16 +190,39 @@ export function ContactForm() {
             </div>
 
             {/* Submit */}
-            <button
-              type="submit"
-              className="group flex w-full items-center justify-center gap-2 rounded-lg bg-brand-blue-500 px-6 py-3.5 text-[14px] font-semibold text-brand-frost transition-colors duration-200 hover:bg-brand-blue-400"
-            >
-              Send Message
-              <Send
-                size={15}
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              />
-            </button>
+            {status === "success" ? (
+              <div className="flex items-center justify-center gap-2 rounded-lg border border-green-500/20 bg-green-500/[0.06] px-6 py-3.5 text-[14px] font-medium text-green-400">
+                <CheckCircle2 size={15} />
+                Message sent. We'll be in touch.
+              </div>
+            ) : (
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="group flex w-full items-center justify-center gap-2 rounded-lg bg-brand-blue-500 px-6 py-3.5 text-[14px] font-semibold text-brand-frost transition-colors duration-200 hover:bg-brand-blue-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === "submitting" ? (
+                  <>
+                    Sending
+                    <Loader2 size={15} className="animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <Send
+                      size={15}
+                      className="transition-transform duration-200 group-hover:translate-x-0.5"
+                    />
+                  </>
+                )}
+              </button>
+            )}
+
+            {status === "error" && (
+              <p className="text-center text-[13px] text-red-400">
+                {errorMsg || "Something went wrong. Try again."}
+              </p>
+            )}
 
             <p className="text-center text-[13px] leading-[1.6] text-graphite-400">
               We respond within 24 hours. No sales sequences. No 14-email nurture

@@ -34,6 +34,7 @@ src/
 ├── index.css                  # Tailwind config + CSS variables
 ├── main.tsx                   # Entry point
 ├── lib/
+│   └── submit-lead.ts
 │   └── utils.ts
 ├── components/
 │   ├── ui/                    # shadcn/ui primitives
