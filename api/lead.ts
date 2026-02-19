@@ -28,6 +28,43 @@ async function verifyTurnstileToken(
   return data?.success === true;
 }
 
+interface LeadData {
+  email: string
+  firstname?: string
+  lastname?: string
+  company?: string
+  jobtitle?: string
+  message?: string
+  plan_interest?: string
+}
+
+async function sendNotificationEmail(apiKey: string, lead: LeadData) {
+  const name = [lead.firstname, lead.lastname].filter(Boolean).join(" ") || "Unknown"
+  const lines = [
+    `**Name:** ${name}`,
+    `**Email:** ${lead.email}`,
+    lead.company ? `**Company:** ${lead.company}` : null,
+    lead.jobtitle ? `**Role:** ${lead.jobtitle}` : null,
+    lead.plan_interest ? `**Interest:** ${lead.plan_interest}` : null,
+    lead.message ? `\n**Message:**\n${lead.message}` : null,
+  ].filter(Boolean).join("\n")
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: "CohesionXL Site <notifications@cohesionxl.com>",
+      to: ["hello@cohesionxl.com"],
+      subject: `New lead: ${name} (${lead.company || "no company"})`,
+      text: lines.replace(/\*\*/g, ""),
+      html: lines.replace(/\n/g, "<br>"),
+    }),
+  })
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
@@ -121,6 +158,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const text = await hsRes.text();
       console.error("HubSpot error:", hsRes.status, text);
       return res.status(502).json({ error: "HubSpot error", details: text });
+    }
+
+    // Fire-and-forget notification email
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (resendApiKey) {
+      sendNotificationEmail(resendApiKey, { email, firstname, lastname, company, jobtitle, message, plan_interest }).catch(
+        (err) => console.error("Resend email error:", err)
+      );
+    } else {
+      console.warn("RESEND_API_KEY not set — skipping notification email");
     }
 
     return res.status(200).json({ ok: true });

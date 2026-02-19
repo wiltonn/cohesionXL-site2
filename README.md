@@ -69,7 +69,8 @@ src/
 │   └── use-turnstile.ts
 docs/
 ├── contentplan.md
-└── design-system.md
+├── design-system.md
+└── techused.md
 ```
 
 ## Design System

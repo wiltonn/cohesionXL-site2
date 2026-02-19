@@ -106,6 +106,37 @@ function devApiPlugin(env: Record<string, string>) {
           return
         }
 
+        // Fire-and-forget notification email
+        const resendApiKey = env.RESEND_API_KEY
+        if (resendApiKey) {
+          const leadName = [firstname, lastname].filter(Boolean).join(" ") || "Unknown"
+          const lines = [
+            `**Name:** ${leadName}`,
+            `**Email:** ${email}`,
+            company ? `**Company:** ${company}` : null,
+            jobtitle ? `**Role:** ${jobtitle}` : null,
+            plan_interest ? `**Interest:** ${plan_interest}` : null,
+            message ? `\n**Message:**\n${message}` : null,
+          ].filter(Boolean).join("\n")
+
+          fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${resendApiKey}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              from: "CohesionXL Site <notifications@cohesionxl.com>",
+              to: ["hello@cohesionxl.com"],
+              subject: `New lead: ${leadName} (${company || "no company"})`,
+              text: lines.replace(/\*\*/g, ""),
+              html: lines.replace(/\n/g, "<br>"),
+            }),
+          }).catch((err) => console.error("Resend email error:", err))
+        } else {
+          console.warn("RESEND_API_KEY not set — skipping notification email")
+        }
+
         res.statusCode = 200
         res.setHeader("Content-Type", "application/json")
         res.end(JSON.stringify({ ok: true }))
