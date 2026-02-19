@@ -4,23 +4,64 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+async function verifyTurnstileToken(
+  token: string,
+  secretKey: string,
+  remoteip?: string
+): Promise<boolean> {
+  const body: Record<string, string> = {
+    secret: secretKey,
+    response: token,
+  };
+  if (remoteip) body.remoteip = remoteip;
+
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
+
+  const data = (await res.json()) as { success?: boolean };
+  return data?.success === true;
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const token = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
-    if (!token) {
+    const hubspotToken = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
+    if (!hubspotToken) {
+      return res.status(500).json({ error: "Server not configured" });
+    }
+
+    const turnstileSecretKey = process.env.TURNSTILE_SECRET_KEY;
+    if (!turnstileSecretKey) {
       return res.status(500).json({ error: "Server not configured" });
     }
 
     const body = req.body;
 
-    // Optional shared-secret to reduce random bot posts
-    const secret = process.env.LEAD_FORM_SHARED_SECRET;
-    if (secret && body?.secret !== secret) {
-      return res.status(401).json({ error: "Unauthorized" });
+    const { turnstileToken } = body ?? {};
+    if (!turnstileToken || typeof turnstileToken !== "string") {
+      return res.status(400).json({ error: "Missing turnstile token" });
+    }
+
+    const remoteip =
+      (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ||
+      req.socket?.remoteAddress;
+
+    const isValid = await verifyTurnstileToken(
+      turnstileToken,
+      turnstileSecretKey,
+      remoteip
+    );
+    if (!isValid) {
+      return res.status(403).json({ error: "Security verification failed" });
     }
 
     const {
@@ -61,7 +102,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${hubspotToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({

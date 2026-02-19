@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { Send, Loader2, CheckCircle2 } from "lucide-react"
 import { submitLead } from "@/lib/submit-lead"
+import { useTurnstile } from "@/hooks/use-turnstile"
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"
 
 const roles = [
   "CTO",
@@ -29,10 +32,20 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
   const [errorMsg, setErrorMsg] = useState("")
 
+  const { containerRef, token: turnstileToken, reset: resetTurnstile } = useTurnstile({
+    siteKey: TURNSTILE_SITE_KEY,
+  })
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus("submitting")
     setErrorMsg("")
+
+    if (!turnstileToken) {
+      setStatus("error")
+      setErrorMsg("Security check not completed. Please wait a moment and try again.")
+      return
+    }
 
     // Split name into first/last
     const nameParts = formData.name.trim().split(/\s+/)
@@ -48,12 +61,14 @@ export function ContactForm() {
         jobtitle: formData.role,
         message: formData.message,
         plan_interest: formData.interest,
-      })
+      }, turnstileToken)
       setStatus("success")
       setFormData({ name: "", email: "", company: "", role: "", interest: "", message: "" })
+      resetTurnstile()
     } catch (err) {
       setStatus("error")
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong")
+      resetTurnstile()
     }
   }
 
@@ -188,6 +203,9 @@ export function ContactForm() {
                 }
               />
             </div>
+
+            {/* Turnstile widget */}
+            <div ref={containerRef} />
 
             {/* Submit */}
             {status === "success" ? (

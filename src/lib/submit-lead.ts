@@ -8,13 +8,13 @@ export interface LeadForm {
   plan_interest?: string
 }
 
-export async function submitLead(form: LeadForm) {
+export async function submitLead(form: LeadForm, turnstileToken: string) {
   const res = await fetch("/api/lead", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...form,
-      secret: import.meta.env.VITE_LEAD_FORM_SHARED_SECRET,
+      turnstileToken,
     }),
   })
 
