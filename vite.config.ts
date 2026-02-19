@@ -111,13 +111,15 @@ function devApiPlugin(env: Record<string, string>) {
         if (resendApiKey) {
           const leadName = [firstname, lastname].filter(Boolean).join(" ") || "Unknown"
           const lines = [
+            `New lead - Check Hubspot`,
+            "",
             `**Name:** ${leadName}`,
             `**Email:** ${email}`,
             company ? `**Company:** ${company}` : null,
             jobtitle ? `**Role:** ${jobtitle}` : null,
             plan_interest ? `**Interest:** ${plan_interest}` : null,
             message ? `\n**Message:**\n${message}` : null,
-          ].filter(Boolean).join("\n")
+          ].filter((l) => l !== null).join("\n")
 
           fetch("https://api.resend.com/emails", {
             method: "POST",

@@ -41,13 +41,15 @@ interface LeadData {
 async function sendNotificationEmail(apiKey: string, lead: LeadData) {
   const name = [lead.firstname, lead.lastname].filter(Boolean).join(" ") || "Unknown"
   const lines = [
+    `New lead - Check Hubspot`,
+    "",
     `**Name:** ${name}`,
     `**Email:** ${lead.email}`,
     lead.company ? `**Company:** ${lead.company}` : null,
     lead.jobtitle ? `**Role:** ${lead.jobtitle}` : null,
     lead.plan_interest ? `**Interest:** ${lead.plan_interest}` : null,
     lead.message ? `\n**Message:**\n${lead.message}` : null,
-  ].filter(Boolean).join("\n")
+  ].filter((l) => l !== null).join("\n")
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
