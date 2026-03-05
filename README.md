@@ -54,6 +54,16 @@ src/
 │       ├── nav.tsx
 │       ├── page-layout.tsx
 │       └── shell.tsx
+│   ├── onboarding/
+│   │   ├── aha-card.tsx
+│   │   ├── comparison-table.tsx
+│   │   ├── crawl-walk-run.tsx
+│   │   ├── pain-card.tsx
+│   │   ├── role-card.tsx
+│   │   ├── section-hero.tsx
+│   │   ├── source-flow-diagram.tsx
+│   │   ├── timeline-phase.tsx
+│   │   └── workshop-card.tsx
 │   ├── sections/
 │   │   ├── competitive-void.tsx
 │   │   ├── contact-form.tsx
@@ -70,6 +80,7 @@ src/
 docs/
 ├── contentplan.md
 ├── design-system.md
+├── onboarding.md
 └── techused.md
 ```
 

@@ -5,6 +5,9 @@ import { Menu, X } from "lucide-react"
 const links = [
   { label: "Overview", path: "/" },
   { label: "How It Works", path: "/how-it-works" },
+  { label: "Why CohesionXL", path: "/customer-pain" },
+  { label: "The First 30 Days", path: "/aha-moments" },
+  { label: "Get Started", path: "/get-started" },
   { label: "Contact", path: "/contact" },
 ]
 
