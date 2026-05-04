@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/hero"
 import { ProblemStatement } from "@/components/sections/problem-statement"
 import { PainCurve } from "@/components/sections/pain-curve"
 import { CompetitiveVoid } from "@/components/sections/competitive-void"
+import { TwoLayerArchitecture } from "@/components/sections/two-layer-architecture"
 import { FinopsAnalogy } from "@/components/sections/finops-analogy"
 import { CtaSection } from "@/components/sections/cta-section"
 
@@ -12,6 +13,7 @@ export function Home() {
       <ProblemStatement />
       <PainCurve />
       <CompetitiveVoid />
+      <TwoLayerArchitecture />
       <FinopsAnalogy />
       <CtaSection
         headline="The governance layer for AI-augmented delivery."

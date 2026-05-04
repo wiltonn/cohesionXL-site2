@@ -2,6 +2,21 @@ import { SectionTag } from "@/components/ui/section-tag"
 
 const differentiators = [
   {
+    title: "Authorization audit, not activity log",
+    description:
+      "Every action binds to the typed intent contract that scoped it. Observability tools log what happened — Atlas proves it was authorized.",
+  },
+  {
+    title: "Intent contracts, not free-form scope",
+    description:
+      "Hard constraints, soft constraints, and validators are typed and machine-checkable. The plan is the rulebook, not the slide deck.",
+  },
+  {
+    title: "Provenance receipts on every artifact",
+    description:
+      "Every element of compiled state carries a pointer back to the observations and intent that produced it. Replayable from the event log.",
+  },
+  {
     title: "Mappings are data, not code",
     description:
       "Adapts to your organization without engineering changes for each context.",
@@ -17,9 +32,9 @@ const differentiators = [
       "Works across heterogeneous toolchains. Doesn't require standardization.",
   },
   {
-    title: "Probabilistic, not deterministic",
+    title: "Calibrated probabilities, not point estimates",
     description:
-      "Discovery uses inference with human-in-the-loop validation, not brittle automation.",
+      "Completion confidence is a calibrated probability with credible intervals — not a binary done / not-done flag.",
   },
   {
     title: "Infrastructure, not application",

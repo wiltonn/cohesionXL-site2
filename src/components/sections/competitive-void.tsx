@@ -22,6 +22,13 @@ const categories = [
       "Model inventory, risk assessment, compliance (EU AI Act, NIST), policy enforcement, bias detection.",
     gap: "They govern AI models and systems, not AI work capacity. They'll tell you whether your model is compliant, but not how much delivery capacity your AI agents actually contribute to your portfolio. Zero concept of the SDLC.",
   },
+  {
+    name: "AI Observability",
+    players: "LangSmith, Langfuse, Helicone",
+    whatTheyDo:
+      "Capture prompts, tool calls, traces, and per-call metrics. Debug agent runs, measure token cost, replay failed invocations.",
+    gap: "They log activity. They do not authorize it. They can show you what an agent did — not whether the action was within the scope of an approved intent, who authorized that intent, or how the resulting artifact reconciles to the plan. Activity log, not authorization audit.",
+  },
 ]
 
 export function CompetitiveVoid() {
@@ -31,11 +38,11 @@ export function CompetitiveVoid() {
         <div>
           <SectionTag>The Landscape</SectionTag>
           <h2 className="max-w-[700px] text-2xl font-semibold leading-[1.3] tracking-[-0.02em] text-graphite-100">
-            Three categories exist nearby. None of them solve this.
+            Four categories exist nearby. None of them solve this.
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {categories.map((cat) => (
             <div
               key={cat.name}
@@ -71,14 +78,13 @@ export function CompetitiveVoid() {
 
         <div className="mt-14">
           <div className="rounded-lg border border-brand-blue-500/20 bg-brand-blue-500/[0.05] p-6 lg:p-8">
-            <p className="mx-auto max-w-[800px] text-center text-base leading-[1.7] text-graphite-300">
-              CohesionXL sits at the intersection: it{" "}
-              <span className="text-brand-blue-400">discovers</span> organizational
-              topology, uses that topology to{" "}
-              <span className="text-brand-blue-400">model constraints</span>, and
-              treats human + AI capacity as a{" "}
-              <span className="text-brand-blue-400">unified throughput model</span>.
-              No existing product does this.
+            <p className="mx-auto max-w-[820px] text-center text-base leading-[1.7] text-graphite-300">
+              CohesionXL sits at the intersection: it holds the{" "}
+              <span className="text-brand-blue-400">authorization map</span>{" "}
+              over a unified human + AI capacity model. Atlas binds every action
+              back to that map and produces{" "}
+              <span className="text-brand-yellow-400">authorization audit</span>,
+              not activity log. No existing product does this.
             </p>
           </div>
         </div>

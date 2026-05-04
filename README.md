@@ -65,21 +65,26 @@ src/
 │   │   ├── timeline-phase.tsx
 │   │   └── workshop-card.tsx
 │   ├── sections/
+│   │   ├── capability-claims.tsx
 │   │   ├── competitive-void.tsx
 │   │   ├── contact-form.tsx
 │   │   ├── cta-section.tsx
+│   │   ├── data-flow-loop.tsx
 │   │   ├── demo-placeholder.tsx
 │   │   ├── differentiators.tsx
 │   │   ├── finops-analogy.tsx
 │   │   ├── hero.tsx
+│   │   ├── out-of-scope.tsx
 │   │   ├── pain-curve.tsx
 │   │   ├── problem-statement.tsx
-│   │   └── process-steps.tsx
+│   │   ├── process-steps.tsx
+│   │   └── two-layer-architecture.tsx
 ├── hooks/
 │   └── use-turnstile.ts
 docs/
 ├── contentplan.md
 ├── design-system.md
+├── newContent.md
 ├── onboarding.md
 └── techused.md
 ```
